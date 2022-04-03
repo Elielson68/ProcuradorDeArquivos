@@ -14,9 +14,13 @@ dotnet run path="caminho/do/arquivo" file="nomeDoArquivo"
 path e file são obrigatórios, outros comandos opcionais são:
 
 extension = Verifica a extensão do arquivo
+
 date = Verifica a data de criação do arquivo
+
 bytes = Verifica o tamanho em bytes do arquivo
+
 content = Verifica se o conteúdo existe dentro do arquivo
+
 
 Uma busca mais avançada poderia ser:
 
