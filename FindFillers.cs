@@ -39,20 +39,20 @@ namespace Estudo.Threads
         static bool lengthIsFinded = false;
         static bool wordOrPhraseIsFinded = false;
         /// <summary>
-        /// 0: path para iniciar a busca
-        /// 1: Arquivo para ser encontrado
-        /// 2: Extensão do arquivo para ser encontrada
-        /// 3: Data de criação do arquivo para ser encontrada
-        /// 4: Tamanho do arquivo em bytes para ser encontrado
-        /// 5: Palavra ou frase contida no arquivo para ser encontrada
+        /// path: path para iniciar a busca
+        /// file: Arquivo para ser encontrado
+        /// extension: Extensão do arquivo para ser encontrada
+        /// date: Data de criação do arquivo para ser encontrada
+        /// bytes: Tamanho do arquivo em bytes para ser encontrado
+        /// content: Palavra ou frase contida no arquivo para ser encontrada
         /// </summary>
-        static Dictionary<int, string> DicOptions = new Dictionary<int, string>(){
-            {0, ""},
-            {1, ""},
-            {2, ""},
-            {3, ""},
-            {4, ""},
-            {5, ""}
+        static Dictionary<string, string> DicOptions = new Dictionary<string, string>(){
+            {"path", ""},
+            {"file", ""},
+            {"extension", ""},
+            {"date", ""},
+            {"bytes", ""},
+            {"content", ""}
         };
         /// <summary>
         /// Primeiro o programa verifica os argumentos passados para ele na hora da execução
@@ -64,21 +64,40 @@ namespace Estudo.Threads
         /// </summary>
         static void Main(string[] args)
         {
+            if(args.Length < 2)
+            {
+                TextoColorido.Imprimir("(B=Red|L=Yellow)Argumentos path e file são necessários!(.)\n");
+                return;
+            }
+            string pattern = @"(.+)=(.+)";
             for(int i=0; i<args.Length; i++)
             {
-                DicOptions[i] = args[i];
-                Console.WriteLine($"Arg {i}: {args[i]}");
+                Match arg = Regex.Match(args[i], pattern);
+                if(arg.Groups[1].Value is "" || arg.Groups[2].Value is "")
+                {
+                    TextoColorido.Imprimir($"(B=Red|L=Yellow)O argumento {i+1} está vazio ou incorreto!(.)\n");
+                }
+                else if (!DicOptions.Keys.Contains(arg.Groups[1].Value))
+                {
+                    TextoColorido.Imprimir($"(B=Red|L=Yellow)A chave \"{arg.Groups[1].Value}\" não é válida!(.)\n");
+                }
+                else
+                {
+                    DicOptions[arg.Groups[1].Value] = arg.Groups[2].Value;
+                }
             }
             Console.WriteLine("Iniciando busca...");
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            Parallel.Invoke(() => InitSearch(path:DicOptions[0], fileName:DicOptions[1],
-                                             typeFile: DicOptions[2], dateFile: DicOptions[3],
-                                             lengthFile: DicOptions[4], wordOrPhraseIncluse: DicOptions[5]));
+            Parallel.Invoke(() => InitSearch(path:DicOptions["path"], fileName:DicOptions["file"],
+                                             typeFile: DicOptions["extension"], dateFile: DicOptions["date"],
+                                             lengthFile: DicOptions["bytes"], wordOrPhraseIncluse: DicOptions["content"]));
+            // InitSearch(path:DicOptions[0], fileName:DicOptions[1],
+            //                                  typeFile: DicOptions[2], dateFile: DicOptions[3],
+            //                                  lengthFile: DicOptions[4], wordOrPhraseIncluse: DicOptions[5]);
             stopwatch.Stop();
-            PrintLogSearch(DicOptions[1]);
+            PrintLogSearch(DicOptions["file"]);
             Console.WriteLine($"Tempo de procura: {stopwatch.Elapsed}"); 
-                   
         }
         /// <summary>
         /// Printa o Log da busca. 
@@ -204,6 +223,8 @@ namespace Estudo.Threads
                 {
                     var directories = Directory.EnumerateDirectories(path);
                     Parallel.ForEach(directories,  item =>  InitSearch(item, fileName, typeFile, dateFile, lengthFile, wordOrPhraseIncluse, enableLog));
+                    // foreach(string item in directories)
+                    //     InitSearch(item, fileName, typeFile, dateFile, lengthFile, wordOrPhraseIncluse, enableLog);
                 }
                 catch
                 {
