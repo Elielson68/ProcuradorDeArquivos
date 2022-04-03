@@ -1,0 +1,16 @@
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.csproj.AssemblyReference.cache
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.AssemblyInfoInputs.cache
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.AssemblyInfo.cs
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.csproj.CoreCompileInputs.cache
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ProcuradorDeArquivos.exe
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ProcuradorDeArquivos.deps.json
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ProcuradorDeArquivos.runtimeconfig.json
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ProcuradorDeArquivos.runtimeconfig.dev.json
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ProcuradorDeArquivos.dll
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ref\ProcuradorDeArquivos.dll
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\bin\Debug\net5.0\ProcuradorDeArquivos.pdb
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.dll
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ref\ProcuradorDeArquivos.dll
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.pdb
+C:\Users\eliel\Documents\C# Projects\ProcuradorDeArquivos\obj\Debug\net5.0\ProcuradorDeArquivos.genruntimeconfig.cache
