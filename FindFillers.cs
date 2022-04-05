@@ -76,10 +76,12 @@ namespace Estudo.Threads
                 if(arg.Groups[1].Value is "" || arg.Groups[2].Value is "")
                 {
                     TextoColorido.Imprimir($"(B=Red|L=Yellow)O argumento {i+1} está vazio ou incorreto!(.)\n");
+                    return;
                 }
                 else if (!DicOptions.Keys.Contains(arg.Groups[1].Value))
                 {
                     TextoColorido.Imprimir($"(B=Red|L=Yellow)A chave \"{arg.Groups[1].Value}\" não é válida!(.)\n");
+                    return;
                 }
                 else
                 {
@@ -112,21 +114,21 @@ namespace Estudo.Threads
             if(!fileIsFinded)
             {
                 TextoColorido.Imprimir($"O arquivo (B=White|L=Black){fileToFind}(.) (B=Red|L=Yellow)não foi encontrado!(.)\n");
-                if(!typeFileIsFinded)
+                if(!typeFileIsFinded && DicOptions["extension"] is not "")
                 {
                     TextoColorido.Imprimir("Não foi encontrado o (B=White|L=Black)tipo(.) de arquivo especificado\n");
                 }
-                if(!dateIsFinded)
+                if(!dateIsFinded && DicOptions["date"] is not "")
                 {
                     TextoColorido.Imprimir("Não foi encontrado a (B=White|L=Black)data(.) do arquivo especificado\n");
                 }
-                if(!lengthIsFinded)
+                if(!lengthIsFinded && DicOptions["bytes"] is not "")
                 {
                     TextoColorido.Imprimir("Não foi encontrado o (B=White|L=Black)tamanho(.) do arquivo especificado\n");
                 }
-                if(!wordOrPhraseIsFinded)
+                if(!wordOrPhraseIsFinded && DicOptions["content"] is not "")
                 {
-                    TextoColorido.Imprimir("Não foi encontrada a (B=White|L=Black)palavra(.) ou frase especificada\n");
+                    TextoColorido.Imprimir("Não foi encontrada a (B=White|L=Black)palavra ou frase(.) especificada\n");
                 }
             }
         }
@@ -145,13 +147,14 @@ namespace Estudo.Threads
             var dirInfo = new DirectoryInfo(path);
             List<FileInfo> findedFiles = dirInfo.GetFiles().ToList().FindAll(f => {
                 bool finded = f.Name.Contains(nameFile);
-                if(typeFile is not "" && !typeFileIsFinded)
-                {
-                    typeFileIsFinded = f.Name.Contains(typeFile) && f.Name.EndsWith(typeFile);
-                    finded  &= typeFileIsFinded;
-                }
+                
                 if(finded)
                 {
+                    if(typeFile is not "" && !typeFileIsFinded)
+                    {
+                        typeFileIsFinded = f.Name.EndsWith(typeFile);
+                        finded  &= typeFileIsFinded;
+                    }
                     if(dateFile is not "" && !dateIsFinded)
                     {
                         dateIsFinded = IsSameDate(f.CreationTime.ToString(), dateFile);
